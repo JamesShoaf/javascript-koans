@@ -93,15 +93,24 @@ describe("About Applying What We Have Learnt", function() {
 
     /* chain() together map(), flatten() and reduce() */
 
-    products.forEach(function(product){
-      product.ingredients.forEach(function(ingredient){
-        if (ingredientCount[ingredient]){
-          ingredientCount[ingredient]++;
-        } else {
-          ingredientCount[ingredient] = 1;
-        }
-      })
-    });
+    // products.forEach(function(product){
+    //   product.ingredients.forEach(function(ingredient){
+    //     if (ingredientCount[ingredient]){
+    //       ingredientCount[ingredient]++;
+    //     } else {
+    //       ingredientCount[ingredient] = 1;
+    //     }
+    //   })
+    // });
+
+
+    ingredientCount['mushrooms'] = _.reduce(_.flatten(_.map(products, function (product){
+      return product.ingredients;
+    })), function(accumulator, ingredient){
+      if (ingredient === 'mushrooms'){
+        accumulator++;
+      }
+    }, 0)
 
     expect(ingredientCount['mushrooms']).toBe(2);
   });
