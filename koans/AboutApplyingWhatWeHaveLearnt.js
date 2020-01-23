@@ -103,14 +103,31 @@ describe("About Applying What We Have Learnt", function() {
     //   })
     // });
 
+    // var ingredientMap = _.map(products, function (product){
+    //   return product.ingredients;
+    // });
+
+    // var flatMap = _.flatten(ingredientMap);
+
+    // var mushroomCounter = function(accumulator, ingredient){
+    //   if (ing)
+    // }
+
+    // var mushroomCount = _.reduce(flatMap, function(accumulator, ingredient){
+    //   if (ingredient === 'mushrooms'){
+    //     return accumulator + 1;
+    //   } else {
+    //     return accumulator;
+    //   }
+    // }, 0);
 
     ingredientCount['mushrooms'] = _.reduce(_.flatten(_.map(products, function (product){
       return product.ingredients;
     })), function(accumulator, ingredient){
       if (ingredient === 'mushrooms'){
-        accumulator++;
-      }
-    }, 0)
+        return accumulator +1;
+      } else { return accumulator;}
+    }, 0);
 
     expect(ingredientCount['mushrooms']).toBe(2);
   });
